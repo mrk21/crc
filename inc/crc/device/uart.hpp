@@ -1,5 +1,4 @@
 #pragma once
-#include <LPC11xx.h>
 
 namespace crc { namespace device {
   struct uart {

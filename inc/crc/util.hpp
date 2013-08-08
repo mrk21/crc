@@ -3,7 +3,7 @@
 
 namespace crc { namespace util {
   constexpr int32_t round_impl(double v, int32_t iv) {
-    return (v - iv) > 0.5 ? iv : iv+1;
+    return (v - iv) < 0.49999 ? iv : iv+1;
   }
   
   constexpr int32_t round(double v) {

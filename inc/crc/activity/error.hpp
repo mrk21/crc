@@ -4,8 +4,11 @@
 
 namespace crc { namespace activity {
   class error: public base {
+  public:
     using self = error;
     static constexpr uint32_t TOGGLE_INTERVAL = 5*2;
+    
+  protected:
     uint32_t clock_count;
     
   public:

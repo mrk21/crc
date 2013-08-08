@@ -1,5 +1,4 @@
 #pragma once
-#include <LPC11xx.h>
 
 namespace crc { namespace device {
   struct rec_button {
@@ -11,5 +10,5 @@ namespace crc { namespace device {
 }}
 
 #define __TEMPLATE_IMPLEMENTATION__
-#include <src/device/rec_button.cpp>
+#include <device/rec_button.cpp>
 #undef __TEMPLATE_IMPLEMENTATION__

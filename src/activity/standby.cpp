@@ -10,6 +10,6 @@ namespace crc { namespace activity {
   }
   
   void standby::on_rec_button(void) {
-    this->context->transition(util::singleton<activity::xmtg<activity::record>>());
+    this->context->transition(util::singleton<xmtg<record>>());
   }
 }}

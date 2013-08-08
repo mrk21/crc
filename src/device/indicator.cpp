@@ -1,4 +1,5 @@
 #include <crc/device/indicator.hpp>
+#include <LPC11xx.h>
 
 namespace crc { namespace device {
   void indicator::init(void) {

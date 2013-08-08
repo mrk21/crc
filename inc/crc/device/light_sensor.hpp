@@ -1,5 +1,5 @@
 #pragma once
-#include <LPC11xx.h>
+#include <cinttypes>
 
 namespace crc { namespace device {
   struct light_sensor {

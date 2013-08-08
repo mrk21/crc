@@ -1,5 +1,4 @@
 #pragma once
-#include <LPC11xx.h>
 
 namespace crc { namespace device {
   struct clock {
@@ -13,5 +12,5 @@ namespace crc { namespace device {
 }}
 
 #define __TEMPLATE_IMPLEMENTATION__
-#include <src/device/clock.cpp>
+#include <device/clock.cpp>
 #undef __TEMPLATE_IMPLEMENTATION__

@@ -7,6 +7,9 @@
 #include <crc/util.hpp>
 
 namespace crc { namespace activity {
+  constexpr uint32_t record::TOGGLE_INTERVAL;
+  constexpr uint32_t record::RECORD_INTERVAL;
+  
   void record::start(void) {
     this->clock_count = 0;
     device::clock::start();
@@ -17,7 +20,7 @@ namespace crc { namespace activity {
   }
   
   void record::on_rec_button(void) {
-    this->context->transition(util::singleton<activity::xmtg<activity::standby>>());
+    this->context->transition(util::singleton<xmtg<standby>>());
   }
   
   void record::on_clock(void) {
@@ -28,7 +31,7 @@ namespace crc { namespace activity {
     }
     
     if (this->clock_count > self::RECORD_INTERVAL) {
-      this->context->transition(util::singleton<self::next_activity>());
+      this->context->transition(util::singleton<xmtg<wait<xmtg<record>>>>());
     }
   }
 }}

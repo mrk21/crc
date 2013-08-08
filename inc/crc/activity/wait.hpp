@@ -1,33 +1,25 @@
 #pragma once
+#include <cinttypes>
 #include <crc/activity/base.hpp>
-#include <crc/device/clock.hpp>
-#include <crc/util.hpp>
 
 namespace crc { namespace activity {
   template<typename NextActivity>
   class wait: public base {
+  public:
     using self = wait;
     using next_activity = NextActivity;
+    static constexpr uint32_t WAIT_TIME = 1*10*2;
     
-    static constexpr auto WAIT_TIME = 1*10*2;
+  protected:
     uint32_t clock_count;
     
   public:
-    virtual void start(void) {
-      this->clock_count = 0;
-      device::clock::start();
-    }
-    
-    virtual void stop(void) {
-      device::clock::stop();
-    }
-    
-    virtual void on_clock(void) {
-      ++this->clock_count;
-      
-      if (this->clock_count >= self::WAIT_TIME) {
-        this->context->transition(util::singleton<self::next_activity>());
-      }
-    }
+    virtual void start(void);
+    virtual void stop(void);
+    virtual void on_clock(void);
   };
 }}
+
+#define __TEMPLATE_IMPLEMENTATION__
+#include <activity/wait.cpp>
+#undef __TEMPLATE_IMPLEMENTATION__

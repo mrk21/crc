@@ -1,4 +1,9 @@
-TOOLCHAIN = arm-none-eabi-
+MAKEFILE := $(word $(words $(MAKEFILE_LIST)), $(MAKEFILE_LIST))
+MAKEFILE_DIR := $(dir $(MAKEFILE))
+ROOT_DIR := $(shell cd $(MAKEFILE_DIR)..; pwd -P)
+ENV ?= target
+include $(MAKEFILE_DIR)/common/$(ENV).mk
+
 CC      = $(TOOLCHAIN)gcc
 CXX     = $(TOOLCHAIN)g++
 LD      = $(TOOLCHAIN)ld
@@ -8,12 +13,9 @@ OBJDUMP = $(TOOLCHAIN)objdump
 AR      = $(TOOLCHAIN)ar
 SIZE    = $(TOOLCHAIN)size
 NM      = $(TOOLCHAIN)nm
-
 LPC21ISP = lpc21isp
 
 
-CFLAGS  = -mcpu=cortex-m0
-CFLAGS += -mthumb
 CFLAGS += -fmessage-length=0
 CFLAGS += -fno-builtin
 CFLAGS += -ffunction-sections
@@ -22,7 +24,7 @@ CFLAGS += -Os -g3 -Wall
 CFLAGS += $(DEFINE)
 CFLAGS += $(INCLUDE_DIRS)
 
-CXXFLAGS  = -std=c++11
+CXXFLAGS += -std=c++11
 CXXFLAGS += -fno-rtti
 CXXFLAGS += -fno-exceptions
 CXXFLAGS += -fno-threadsafe-statics
@@ -34,8 +36,6 @@ define dflags
 endef
 
 
-LDFLAGS  = -mcpu=cortex-m0 -mthumb
-LDFLAGS += -T$(LD_SCRIPT)
 LDFLAGS += $(LIB_DIRS)
 
 # $(call mapflags, $filepath)
@@ -55,18 +55,45 @@ define count
 endef
 
 
+GEN_DIR = $(ROOT_DIR)/gen/$(ENV)
 
 # $(call objects, $files)
 define objects
- $(addsuffix .o, $1)
+ $(call gen_path, $(addsuffix .o, $1))
 endef
 
 # $(call depends, $files)
 define depends
- $(addsuffix .d, $1)
+ $(call gen_path, $(addsuffix .d, $1))
 endef
 
-# $(call gens, $files)
-define gens
- $(call objects, $1) $(call depends, $1)
+# $(call hexs, $files)
+define hexs
+ $(call gen_path, $(addsuffix .hex, $1))
+endef
+
+# $(call ars, $files)
+define ars
+ $(call gen_path, $(addsuffix .a, $1))
+endef
+
+# $(call elfs, $files)
+define elfs
+ $(call gen_path, $(addsuffix .elf, $1))
+endef
+
+
+# $(call gen_path, $files)
+define gen_path
+ $(addprefix $(GEN_DIR)/, $(subst $(ROOT_DIR)/,, $1))
+endef
+
+# $(call rm_gen)
+define rm_gen
+ $(RM) -r $(GEN_DIR)
+endef
+
+# $(call mkdir_gen, $path)
+define mkdir_gen
+ @mkdir -p $(dir $1)
 endef

@@ -1,4 +1,5 @@
 #include <crc/device/ir_xmtr.hpp>
+#include <LPC11xx.h>
 
 namespace crc { namespace device {
 /// public

@@ -5,6 +5,8 @@
 #include <crc/util.hpp>
 
 namespace crc { namespace activity {
+  constexpr uint32_t error::TOGGLE_INTERVAL;
+  
   void error::start(void) {
     this->clock_count = 0;
     device::clock::start();
@@ -15,7 +17,7 @@ namespace crc { namespace activity {
   }
   
   void error::on_rec_button(void) {
-    this->context->transition(util::singleton<activity::standby>());
+    this->context->transition(util::singleton<standby>());
   }
   
   void error::on_clock(void) {

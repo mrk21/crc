@@ -1,4 +1,5 @@
 #include <crc/device/uart.hpp>
+#include <LPC11xx.h>
 
 namespace crc { namespace device {
   void uart::init(void) {

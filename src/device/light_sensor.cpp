@@ -1,4 +1,5 @@
 #include <crc/device/light_sensor.hpp>
+#include <LPC11xx.h>
 
 namespace crc { namespace device {
   void light_sensor::init(void) {

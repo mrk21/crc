@@ -1,42 +1,24 @@
-include config.mk
+include config/common.mk
+include config/crc.mk
 
 
-CMSIS_DIR = CMSISv2p00_LPC11xx
-INCLUDE_DIRS = -I$(CMSIS_DIR)/inc -Iinc -I.
-LIB_DIRS = -L$(CMSIS_DIR)
-LIBS = -llpc11xx
-LD_SCRIPT = lpc1114fn28.ld
+TARGET = crc
 
-TARGET = gen/crc
-FILES = $(addprefix gen/, $(call find, src, c) $(call find, src, cpp))
 
 .DEFAULT: all
-.SECONDARY: $(call objects, $(FILES)) $(TARGET).elf
+.SECONDARY: $(call objects, $(FILES)) $(call elfs, $(TARGET))
 
 
 .PHONY: all
-all: $(TARGET).hex size
+all: $(call hexs, $(TARGET)) size
 
 .PHONY: size
-size: $(TARGET).elf
+size: $(call elfs, $(TARGET))
 	$(SIZE) $<
-
-.PHONY: nm
-nm: $(TARGET).elf
-	$(NM) $<
-
-.PHONY: readelf
-readelf: $(call objects, $(FILES)) $(TARGET).elf
-	@$(foreach f, $^, \
-		echo; \
-		echo '#' $(f); \
-		echo; \
-		readelf -S $(f); \
-	)
 
 .PHONY: clean
 clean:
-	$(RM) -r gen
+	$(call rm_gen)
 
 .PHONY: rebuild
 rebuild: clean all
@@ -47,22 +29,33 @@ program: all
 
 .PHONY: count
 count:
-	$(call count, src)
+	$(call count, inc src spec)
+
+.PHONY: test
+test: 
+	@$(MAKE) -C test --no-print-directory ENV=host exec
+
+.PHONY: spec
+spec: 
+	@$(MAKE) -C spec --no-print-directory ENV=host exec
+
+.PHONY: vendor
+vendor: 
+	@$(MAKE) -C vendor --no-print-directory
 
 
 %.hex: %.elf
 	$(OBJCOPY) -O ihex $< $@
 
-%.elf: $(LD_SCRIPT) $(call objects, $(FILES))
-	$(MAKE) -C $(CMSIS_DIR)
-	$(CXX) $(LDFLAGS) $(call linkflags, $@) -o $@ $(wordlist 2, $(words $^), $^) $(LIBS)
+%.elf: $(call objects, $(FILES))
+	$(CC) $(LDFLAGS) $(call linkflags, $@) -o $@ $^ $(LIBS)
 
-gen/%.o: %.c
-	@mkdir -p $(dir $@)
+$(GEN_DIR)/%.o: $(ROOT_DIR)/%.c
+	$(call mkdir_gen, $@)
 	$(CC) -c $(CFLAGS) $(call dflags, $@) -o $@ $<
 
-gen/%.o: %.cpp
-	@mkdir -p $(dir $@)
+$(GEN_DIR)/%.o: $(ROOT_DIR)/%.cpp
+	$(call mkdir_gen, $@)
 	$(CXX) -c $(CXXFLAGS) $(call dflags, $@) -o $@ $<
 
 

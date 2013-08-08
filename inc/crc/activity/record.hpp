@@ -6,11 +6,12 @@
 
 namespace crc { namespace activity {
   class record: public base {
+  public:
     using self = record;
-    using next_activity = activity::xmtg<activity::xmtg<activity::record>>;
-    
     static constexpr uint32_t TOGGLE_INTERVAL = 2*10*2;
     static constexpr uint32_t RECORD_INTERVAL = 10*60*10*2;
+    
+  protected:
     uint32_t clock_count;
     
   public:

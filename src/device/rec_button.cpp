@@ -1,4 +1,5 @@
 #include <crc/device/rec_button.hpp>
+#include <LPC11xx.h>
 
 namespace crc { namespace device {
 #ifndef __TEMPLATE_IMPLEMENTATION__

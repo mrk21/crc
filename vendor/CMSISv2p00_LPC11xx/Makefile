@@ -1,6 +1,6 @@
-include ../config.mk
+include ../../config/common.mk
 
-
+GEN_DIR = gen
 INCLUDE_DIRS = -Iinc
 TARGET = liblpc11xx
 FILES = $(call find, ., c)
@@ -8,20 +8,22 @@ FILES = $(call find, ., c)
 
 .DEFAULT: all
 .PHONY: all
-all: $(TARGET).a
+all: $(call ars, $(TARGET))
 
 .PHONY: clean
 clean:
-	$(RM) $(TARGET).* $(call gens, $(FILES))
+	$(call rm_gen)
 
 .PHONY: rebuild
 rebuild: clean all
 
 
-$(TARGET).a: $(call objects, $(FILES))
+$(call ars, $(TARGET)): $(call objects, $(FILES))
+	$(call mkdir_gen, $@)
 	$(AR) -r $@ $^
 
-%.o: %.c
+$(GEN_DIR)/%.o: %.c
+	$(call mkdir_gen, $@)
 	$(CC) -c $(CFLAGS) $(call dflags, $@) -o $@ $<
 
 
