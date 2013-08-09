@@ -1,7 +1,8 @@
 #pragma once
 
 namespace crc { namespace device {
-  struct rec_button {
+  class rec_button {
+  public:
     static void init(void){}
     
     template<typename Callback>

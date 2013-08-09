@@ -3,7 +3,6 @@
 
 namespace crc { namespace device {
   void uart::init(void) {
-    
     LPC_IOCON->PIO1_6 |= 0x01;
     LPC_IOCON->PIO1_7 |= 0x01;
     LPC_SYSCON->SYSAHBCLKCTRL |= (1<<12);

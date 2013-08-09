@@ -1,7 +1,8 @@
 #pragma once
 
 namespace crc { namespace device {
-  struct clock {
+  class clock {
+  public:
     using self = clock;
     static bool is_start_;
     

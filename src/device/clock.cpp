@@ -3,6 +3,8 @@
 
 namespace crc { namespace device {
 #ifndef __TEMPLATE_IMPLEMENTATION__
+  constexpr uint32_t clock::IR_BIT;
+  
   void clock::init(void) {
     LPC_IOCON->PIO0_8 |= (1<<1);
     LPC_SYSCON->SYSAHBCLKCTRL |= (1<<7);
@@ -25,8 +27,8 @@ namespace crc { namespace device {
 #else
   template<typename Callback>
   void clock::on_interrupt(Callback callback) {
-    if (!(LPC_TMR16B0->IR & (1<<2))) return;
-    LPC_TMR16B0->IR = (1<<2);
+    if (!(LPC_TMR16B0->IR & self::IR_BIT)) return;
+    LPC_TMR16B0->IR = self::IR_BIT;
     callback();
   }
 #endif

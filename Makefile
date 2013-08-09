@@ -25,7 +25,7 @@ rebuild: clean all
 
 .PHONY: program
 program: all
-	$(LPC21ISP) -control $(TARGET).hex /dev/ttyUSB0 115200 12000
+	$(LPC21ISP) -control $(call hexs, $(TARGET)) /dev/ttyUSB0 115200 12000
 
 .PHONY: count
 count:

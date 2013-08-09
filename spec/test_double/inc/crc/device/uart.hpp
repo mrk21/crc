@@ -2,7 +2,8 @@
 #include <string>
 
 namespace crc { namespace device {
-  struct uart {
+  class uart {
+  public:
     using self = uart;
     static std::string buffer_;
     static void init(void);

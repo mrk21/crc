@@ -1,7 +1,13 @@
 #pragma once
+#include <cinttypes>
 
 namespace crc { namespace device {
-  struct clock {
+  class clock {
+  protected:
+    using self = clock;
+    static constexpr uint32_t IR_BIT = 1<<2;
+    
+  public:
     static void init(void);
     static void start(void);
     static void stop(void);

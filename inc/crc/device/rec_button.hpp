@@ -1,7 +1,13 @@
 #pragma once
+#include <cinttypes>
 
 namespace crc { namespace device {
-  struct rec_button {
+  class rec_button {
+  protected:
+    using self = rec_button;
+    static constexpr uint32_t BIT = 1<<8;
+    
+  public:
     static void init(void);
     
     template<typename Callback>

@@ -1,7 +1,8 @@
 #pragma once
 
 namespace crc { namespace device {
-  struct indicator {
+  class indicator {
+  public:
     using self = indicator;
     static bool is_on_;
     

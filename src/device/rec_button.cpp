@@ -3,23 +3,25 @@
 
 namespace crc { namespace device {
 #ifndef __TEMPLATE_IMPLEMENTATION__
+  constexpr uint32_t rec_button::BIT;
+  
   void rec_button::init(void) {
-    LPC_GPIO1->DIR &= ~(1<<8);
+    LPC_GPIO1->DIR &= ~self::BIT;
     
     NVIC_EnableIRQ(EINT1_IRQn);
-    LPC_GPIO1->IS  &= ~(1<<8);
-    LPC_GPIO1->IBE &= ~(1<<8);
-    LPC_GPIO1->IEV &= ~(1<<8);
-    LPC_GPIO1->IE  |=  (1<<8);
+    LPC_GPIO1->IS  &= ~self::BIT;
+    LPC_GPIO1->IBE &= ~self::BIT;
+    LPC_GPIO1->IEV &= ~self::BIT;
+    LPC_GPIO1->IE  |=  self::BIT;
   }
   
 #else
   template<typename Callback>
   void rec_button::on_interrupt(Callback func) {
-    if (!(LPC_GPIO1->MIS & (1<<8))) return;
-    LPC_GPIO1->IC |= (1<<8);
+    if (!(LPC_GPIO1->MIS & self::BIT)) return;
+    LPC_GPIO1->IC |= self::BIT;
     
-    if (!(LPC_GPIO1->DATA & (1<<8))) func();
+    if (!(LPC_GPIO1->DATA & self::BIT)) func();
   }
 #endif
 }}

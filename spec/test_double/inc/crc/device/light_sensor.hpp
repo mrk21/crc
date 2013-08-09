@@ -2,7 +2,8 @@
 #include <cinttypes>
 
 namespace crc { namespace device {
-  struct light_sensor {
+  class light_sensor {
+  public:
     using self = light_sensor;
     static uint32_t value_;
     static void init(void);

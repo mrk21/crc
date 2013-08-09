@@ -2,7 +2,8 @@
 #include <cinttypes>
 
 namespace crc { namespace device {
-  struct ir_xmtr {
+  class ir_xmtr {
+  public:
     using self = ir_xmtr;
     static bool is_send_;
     
