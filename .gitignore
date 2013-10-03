@@ -12,3 +12,6 @@
 !/vendor/CMSISv2p00_LPC11xx
 /vendor/CMSISv2p00_LPC11xx/gen
 
+*.s#*
+*.b#*
+
