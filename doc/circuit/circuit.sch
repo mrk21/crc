@@ -8236,34 +8236,34 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <part name="C2" library="rcl" deviceset="C-EU" device="025-024X044" value="0.1u"/>
 <part name="LED1" library="led" deviceset="LED" device="5MM"/>
 <part name="R1" library="rcl" deviceset="R-US_" device="0204/7" value="1k"/>
-<part name="R2" library="rcl" deviceset="R-US_" device="0204/7" value="100"/>
+<part name="R2" library="rcl" deviceset="R-US_" device="0204/7" value="1k"/>
 <part name="C4" library="rcl" deviceset="C-EU" device="025-024X044" value="0.01u"/>
 <part name="R4" library="rcl" deviceset="R-US_" device="0204/7" value="1k"/>
 <part name="R3" library="rcl" deviceset="R-US_" device="0204/7" value="100"/>
 <part name="GND1" library="supply1" deviceset="GND" device=""/>
 <part name="P+1" library="supply1" deviceset="VCC" device=""/>
-<part name="VCC" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
+<part name="VCC" library="wirepad" deviceset="WIREPAD" device="2,15/1,0" value="WIREPAD2,15/1,0"/>
 <part name="GND2" library="supply1" deviceset="GND" device=""/>
 <part name="GND3" library="supply1" deviceset="GND" device=""/>
 <part name="P+2" library="supply1" deviceset="VCC" device=""/>
 <part name="P+3" library="supply1" deviceset="VCC" device=""/>
 <part name="GND5" library="supply1" deviceset="GND" device=""/>
 <part name="P+4" library="supply1" deviceset="VCC" device=""/>
-<part name="CDS+" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
-<part name="CDS-" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
+<part name="CDS+" library="wirepad" deviceset="WIREPAD" device="2,15/1,0" value="WIREPAD2,15/1,0"/>
+<part name="CDS-" library="wirepad" deviceset="WIREPAD" device="2,15/1,0" value="WIREPAD2,15/1,0"/>
 <part name="GND6" library="supply1" deviceset="GND" device=""/>
 <part name="GND7" library="supply1" deviceset="GND" device=""/>
 <part name="GND8" library="supply1" deviceset="GND" device=""/>
-<part name="IR+" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
-<part name="IR-" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
+<part name="IR+" library="wirepad" deviceset="WIREPAD" device="2,15/1,0" value="WIREPAD2,15/1,0"/>
+<part name="IR-" library="wirepad" deviceset="WIREPAD" device="2,15/1,0" value="WIREPAD2,15/1,0"/>
 <part name="GND9" library="supply1" deviceset="GND" device=""/>
 <part name="S1" library="switch-omron" deviceset="10-XX" device=""/>
-<part name="GND" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
-<part name="RESET" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
-<part name="CLKOUT" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
+<part name="GND" library="wirepad" deviceset="WIREPAD" device="2,15/1,0" value="WIREPAD2,15/1,0"/>
+<part name="RESET" library="wirepad" deviceset="WIREPAD" device="2,15/1,0" value="WIREPAD2,15/1,0"/>
+<part name="CLKOUT" library="wirepad" deviceset="WIREPAD" device="2,15/1,0" value="WIREPAD2,15/1,0"/>
 <part name="GND10" library="supply1" deviceset="GND" device=""/>
-<part name="RXD" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
-<part name="TXD" library="wirepad" deviceset="WIREPAD" device="2,54/1,0"/>
+<part name="RXD" library="wirepad" deviceset="WIREPAD" device="2,15/1,0" value="WIREPAD2,15/1,0"/>
+<part name="TXD" library="wirepad" deviceset="WIREPAD" device="2,15/1,0" value="WIREPAD2,15/1,0"/>
 <part name="G1" library="battery" deviceset="CR2032H" device=""/>
 <part name="GND11" library="supply1" deviceset="GND" device=""/>
 <part name="P+5" library="supply1" deviceset="VCC" device=""/>
@@ -8553,7 +8553,6 @@ Source: http://www2.produktinfo.conrad.com/datenblaetter/700000-724999/705152-da
 <approved hash="104,1,88.9,53.34,U1,VDD,VCC,,,"/>
 <approved hash="104,1,88.9,48.26,U1,VSS,GND,,,"/>
 <approved hash="104,1,88.9,45.72,U1,VSSA,GND,,,"/>
-<approved hash="115,1,124.782,46.99,LED1,,,,,"/>
 <approved hash="115,1,140.089,40.64,S1,,,,,"/>
 </errors>
 </schematic>
